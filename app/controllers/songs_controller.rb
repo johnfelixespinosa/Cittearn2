@@ -1,6 +1,10 @@
 class SongsController < ApplicationController
   def index
-    @songs = Song.all
+    @songs = Song.all.order('title ASC')
+  end
+
+  def show
+    @song = Song.find_by(id: params[:id])
   end
 
   def new
@@ -9,6 +13,12 @@ class SongsController < ApplicationController
 
   def create
     @song = Song.new(song_params)
+
+    if @song.save
+      redirect_to song_path(@song)
+    else
+      render 'new'
+    end
   end
 
   private
