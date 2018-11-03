@@ -1,10 +1,11 @@
 class SongsController < ApplicationController
+  before_action :find_song, only: [:show, :edit, :update, :destroy]
+
   def index
     @songs = Song.all.order('title ASC')
   end
 
   def show
-    @song = Song.find_by(id: params[:id])
   end
 
   def new
@@ -30,6 +31,10 @@ class SongsController < ApplicationController
         :difficulty,
         :lyrics,
         )
+     end
+
+     def find_song
+      @song = Song.find_by(id: params[:id])
      end
 
 end
