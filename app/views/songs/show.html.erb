@@ -1,8 +1,9 @@
 <div class="song-info">
-
   <h2 class="song-title"><%= @song.title %></h2>
   <h3 class="song-artist"><span>By</span> <%= @song.artist %></h3>
   <h3 class="song-difficulty"><%= @song.difficulty %></h3>
   <p class="song-lyrics"><%= @song.lyrics %></p>
-
 </div>
+
+<%= link_to "Edit Song", edit_song_path(@song) %>
+<%= link_to "Delete Song", song_path(@song), method: :delete, data: { confirm: "Are you sure?" } %>
